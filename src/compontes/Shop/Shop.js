@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"; 
 import './Shop.css'
 import Products from '../Products/Products.js'
-
+import Cart from '../cart/Cart'
 
 
 const Shop = ()=>{
@@ -29,9 +29,8 @@ const Shop = ()=>{
             product.map(res => <Products key = {res.id} data ={res} addToCardHandeler={addToCardHandeler}></Products>)
            }
            </div>
-            <div>
-                <p>Oder Summary</p>
-                <p>Total : {cart.length}</p>
+            <div className="oder-cart">
+               <Cart cart={cart}></Cart>
             </div>
         </div>
     )
