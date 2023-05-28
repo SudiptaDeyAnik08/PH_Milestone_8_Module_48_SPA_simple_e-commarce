@@ -33,9 +33,23 @@ const Shop = ()=>{
 
     const addToCardHandeler = (respondGoods) =>{
         console.log(respondGoods);
-        const newCart = [...cart,respondGoods];
+
+        let newCart = [];
+        const exitst = cart.find(res=> res.id === respondGoods.id);
+        
+        if(!exitst){
+            respondGoods.quantity =1;
+            newCart = [...cart,respondGoods];  
+        }
+        else{
+            const rest = cart.filter(res => res.id !== respondGoods.id);
+            exitst.quantity = exitst.quantity + 1;
+            newCart = [...rest, exitst];
+        }
+        
+
         setCart(newCart);
-        addToDb(respondGoods.id);
+        addToDb(respondGoods.id);   
 
     }
 
