@@ -11,7 +11,7 @@ export const ProductsAndCartLoader = async()=>{
     //get cart
     const saveCart = getStoredCart();
     // console.log("saved Cart: ",saveCart);
-    const initialCart =[];
+    const  initialCart =[];
     for(const id in saveCart){
           console.log(id);
 

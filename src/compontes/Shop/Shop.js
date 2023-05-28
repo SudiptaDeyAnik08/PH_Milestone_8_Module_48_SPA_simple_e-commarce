@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import './Shop.css';
 import Products from '../Products/Products.js';
 import Cart from '../cart/Cart';
-import {addToDb, getStoredCart} from '../../utilities/fakedb.js';
+import {addToDb, deleteShoppingCart, getStoredCart} from '../../utilities/fakedb.js';
+import { Link } from "react-router-dom";
 
 const Shop = ()=>{
 
     const [product,setProduct] = useState([]);
     const [cart,setCart] = useState([]);
    
+    const clearCart =()=>{
+        setCart([]);
+        deleteShoppingCart();
+    }
 
     useEffect(()=>{
         fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json')
@@ -61,7 +66,11 @@ const Shop = ()=>{
            }
            </div>
             <div className="oder-cart">
-               <Cart cart={cart}></Cart>
+               <Cart clearCart={clearCart} cart={cart}>
+                <Link to='/Orders'>
+                <button>Review Orders</button>
+                </Link>
+               </Cart>
             </div>
         </div>
     )
